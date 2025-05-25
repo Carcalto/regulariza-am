@@ -4,21 +4,26 @@
       <h2 class="section-title">CONTATO E SUPORTE</h2>
       <div class="contact-info-card">
         <div class="contact-details">
-        <div class="contact-item">
+        <a href="https://wa.me/5592994034980" target="_blank" rel="noopener noreferrer" class="contact-item whatsapp-link">
           <img src="@/assets/Exportação_IconeWhats.png" alt="WhatsApp" class="contact-icon">
           <span class="contact-text">(92) 99403-4980</span>
-        </div>
+        </a>
         <div class="contact-item">
           <img src="@/assets/Exportação_IconeEmail.png" alt="Email" class="contact-icon">
           <span class="contact-text">parcelamento@pge.am.gov.br</span>
         </div>
-        <div class="contact-item">
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Rua+Emílio+Moreira,+nº+1308,+Praça+14+de+janeiro,+Manaus,+AM"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-item address-link"
+        >
           <img src="@/assets/Exportação_IconeLocalização.png" alt="Endereço" class="contact-icon">
           <div class="address-text">
             <span>Rua Emílio Moreira, nº 1308</span>
             <span>Praça 14 de janeiro</span>
           </div>
-        </div>
+        </a>
         </div>
       </div>
     </div>
@@ -83,7 +88,7 @@
 
 .contact-text {
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: white; /* Estilo do link herdará a cor do .contact-text */
   font-weight: 700; /* Negrito */
   font-size: 1.7rem; /* Aumentado */
   line-height: 1;
@@ -95,7 +100,7 @@
   display: flex;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: white; /* Estilo do link herdará a cor do .address-text */
   font-weight: 700; /* Negrito */
   font-size: 1.7rem; /* Aumentado */
   line-height: 1;
@@ -113,8 +118,12 @@
     font-size: 1.8rem;
     text-align: center; /* Centralizar título em telas menores */
   }
-  .contact-item {
+  .contact-item { /* Aplicar também ao link para manter o comportamento flex */
     align-items: flex-start; /* Alinhar ícone com topo do texto se o texto quebrar linha */
+  }
+  .whatsapp-link,
+  .address-link { /* Garante que os links não tenham sublinhado padrão e herdem estilos */
+    text-decoration: none;
   }
   .contact-text,
   .address-text {

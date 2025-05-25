@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="copyright-text">&copy; 2025 - Procuradoria Geral do Estado do Amazonas - CTI/NDTIC. Todos os direitos reservados</p>
+        <p class="copyright-text">&copy; 2025 - Procuradoria Geral do Estado do Amazonas - SIDT/NDTIC. Todos os direitos reservados</p>
       </div>
     </div>
   </footer>
