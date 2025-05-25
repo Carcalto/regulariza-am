@@ -1,66 +1,98 @@
-/* Reset and base styles */
+/*
+  src/style.css
+  Este arquivo contém os estilos globais da aplicação, incluindo resets,
+  estilos base para elementos HTML e classes utilitárias.
+*/
+
+/*
+  CSS Reset e Estilos Base
+  -------------------------
+  Um reset simples para remover margens e paddings padrão dos navegadores
+  e definir box-sizing como border-box para um modelo de caixa mais intuitivo.
+*/
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box; /* Inclui padding e border na largura/altura total do elemento */
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove paddings padrão */
 }
 
+/* Estilos para o elemento <body> */
 body {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; /* Default font */
-  line-height: 1.6;
-  color: #333;
-  background-color: #f0f4f8; /* Consistent background */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex; /* Use flex for body to center #app */
-  justify-content: center; /* Center #app horizontally */
-  align-items: flex-start; /* Align #app to the top */
-  min-height: 100vh; /* Ensure body takes at least full viewport height */
-  padding: 1rem 0; /* Add some padding top/bottom if viewport is larger, no horizontal padding */
+  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif; /* Define a fonte padrão da aplicação, priorizando Roboto */
+  line-height: 1.6; /* Altura de linha para melhor legibilidade */
+  color: #333; /* Cor de texto padrão */
+  background-color: #f0f4f8; /* Cor de fundo consistente para a página */
+  -webkit-font-smoothing: antialiased; /* Melhora a renderização de fontes em WebKit/Blink */
+  -moz-osx-font-smoothing: grayscale; /* Melhora a renderização de fontes no Firefox (macOS) */
+
+  /* Layout Flex para centralizar o contêiner principal #app */
+  display: flex;
+  justify-content: center; /* Centraliza #app horizontalmente na viewport */
+  align-items: flex-start; /* Alinha #app no topo da viewport */
+  min-height: 100vh; /* Garante que o body ocupe pelo menos toda a altura da viewport */
+  padding: 1rem 0; /* Adiciona um espaçamento vertical no body, útil se #app for menor que a viewport */
 }
 
+/* Estilos para o contêiner principal da aplicação Vue (<div id="app">) */
 #app {
-  width: 100%;
-  max-width: 1500px; /* Maximum width for the site */
-  /* max-height: 800px; This line is ensured to be removed or commented out */
+  width: 100%; /* Ocupa toda a largura disponível (limitada pelo body ou viewport) */
+  max-width: 1500px; /* Define uma largura máxima para o conteúdo principal do site, melhorando a legibilidade em telas grandes */
+  /* max-height: 800px; Esta linha foi removida/comentada para permitir scroll natural do conteúdo */
   
-  display: flex; /* Use flex for #app to manage its children */
-  flex-direction: column; /* Stack children (landing page) vertically */
+  /* Layout Flex para organizar os componentes filhos (as seções da landing page) */
+  display: flex;
+  flex-direction: column; /* Empilha os componentes filhos verticalmente */
   
-  background-color: white; /* Give a background to the app container */
-  box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Optional: add a shadow for better visual separation */
-  border-radius: 8px; /* Optional: rounded corners */
-  /* overflow: hidden; This line is ensured to be removed or commented out */
-  position: relative; /* For potential absolute positioning inside */
+  background-color: white; /* Cor de fundo para o contêiner da aplicação, destacando-o do fundo do body */
+  box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Sombra sutil para dar um efeito de "elevação" */
+  border-radius: 8px; /* Cantos arredondados para um visual mais suave */
+  /* overflow: hidden; Esta linha foi removida/comentada para não cortar conteúdo que possa exceder as bordas (ex: sombras, tooltips) */
+  position: relative; /* Define um contexto de posicionamento para elementos filhos posicionados absolutamente */
 }
 
-/* If content within #app exceeds viewport height, the browser's default scroll will handle it */
+/*
+  Nota sobre Scroll:
+  Se o conteúdo dentro de #app exceder a altura da viewport,
+  a barra de rolagem padrão do navegador será ativada no elemento <html> ou <body>,
+  o que é o comportamento desejado para uma landing page.
+*/
 
+/* Estilos base para links (<a>) */
 a {
-  color: #007bff;
-  text-decoration: none;
+  color: #007bff; /* Cor padrão para links */
+  text-decoration: none; /* Remove o sublinhado padrão */
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Adiciona sublinhado no hover para feedback visual */
 }
 
+/* Estilos base para imagens (<img>) */
 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  max-width: 100%; /* Garante que as imagens não ultrapassem a largura de seu contêiner (responsividade) */
+  height: auto; /* Mantém a proporção da imagem ao redimensionar a largura */
+  display: block; /* Remove espaço extra abaixo de imagens inline */
 }
 
-/* Utility classes (optional, but can be helpful) */
+/*
+  Classes Utilitárias
+  --------------------
+  Classes genéricas que podem ser reutilizadas em vários componentes para aplicar estilos comuns.
+  (Opcional, mas pode ser útil para consistência).
+*/
 .container {
-  width: 90%;
-  max-width: 1200px; /* This will be constrained by #app's max-width */
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: 90%; /* Define a largura do contêiner como 90% do seu pai */
+  max-width: 1200px; /* Largura máxima para o contêiner (será limitada pela max-width do #app) */
+  margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+  padding: 0 1rem; /* Espaçamento interno horizontal */
 }
 
-/* Ensure the root and html also allow for full height */
+/*
+  Estilos para o elemento raiz (<html>)
+  --------------------------------------
+  Garante que o elemento html também permita layouts de altura total e define o comportamento de scroll.
+*/
 html {
-  height: 100%;
-  scroll-behavior: smooth;
+  height: 100%; /* Permite que elementos filhos com height: 100% funcionem corretamente */
+  scroll-behavior: smooth; /* Habilita a rolagem suave para âncoras (ex: <a href="#secao">) */
 }

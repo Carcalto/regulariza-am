@@ -1,3 +1,8 @@
+<!--
+  Template principal da aplicação.
+  Este componente orquestra a renderização das principais seções da landing page.
+  Cada tag aqui representa um componente Vue dedicado a uma seção específica.
+-->
 <template>
   <Header />
   <HeroSection />
@@ -10,14 +15,13 @@
   <FaqSection />
   <ContactSupportSection />
   <FooterSection />
-  <!-- <main>
-    <div>
-      <h1>Conteúdo Principal Após Header</h1>
-      <p>Se o Header carregar sem erros, o problema não está nele.</p>
-    </div>
-  </main> -->
 </template>
 
+<!--
+  Script setup para a lógica do componente App.vue.
+  Utiliza a Composition API do Vue 3 com TypeScript.
+  Principalmente importa os componentes que formam a estrutura da página.
+-->
 <script setup lang="ts">
 import Header from './components/Header.vue';
 import HeroSection from './components/HeroSection.vue';
@@ -31,21 +35,14 @@ import FaqSection from './components/FaqSection.vue';
 import ContactSupportSection from './components/ContactSupportSection.vue';
 import FooterSection from './components/FooterSection.vue';
 
-console.log('App.vue com todos os componentes da landing page carregados.');
 </script>
 
+<!--
+  Estilos para o componente App.vue.
+  Como a maioria dos estilos globais e de layout está em src/style.css,
+  esta seção é reservada para estilos que são verdadeiramente específicos
+  apenas para o encapsulamento ou layout direto do App.vue, se houver.
+-->
 <style>
-/* Estilos globais ou específicos do App.vue podem ser adicionados aqui se necessário */
-body {
-  font-family: 'Arial', sans-serif; /* Exemplo de fonte global */
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-main {
-  padding: 20px;
-  text-align: center;
-}
+/* Estilos específicos do App.vue podem ser adicionados aqui se necessário */
 </style>
