@@ -8,7 +8,7 @@
       </div>
       <div class="faq-list">
         <div v-for="(item, index) in faqItems" :key="index" class="faq-item">
-          <button class="faq-question" @click="toggleItem(index)" :aria-expanded="item.open.toString()">
+          <button class="faq-question" @click="toggleItem(index)" :aria-expanded="item.open">
             <span>{{ item.question }}</span>
             <span class="faq-icon">{{ item.open ? '-' : '+' }}</span>
           </button>

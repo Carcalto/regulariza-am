@@ -6,10 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+// import { ref } from 'vue'; // Removido pois não está sendo utilizado
 
 // Defina como true se houver conteúdo a ser adicionado dinamicamente ou via slots
-const hasContent = ref(false); 
+// const hasContent = ref(false); // Comentado para remover o erro TS6133, pode ser reativado se necessário
 </script>
 
 <style scoped>

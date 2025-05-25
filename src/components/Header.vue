@@ -13,7 +13,7 @@
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
-      <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu" :aria-expanded="isMenuOpen.toString()">
+      <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu" :aria-expanded="isMenuOpen">
         ☰
       </button>
     </div>
