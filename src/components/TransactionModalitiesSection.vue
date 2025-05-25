@@ -82,7 +82,7 @@
 
 <style scoped>
 .transaction-modalities-section {
-  background-image: url('../assets/Exportação_FundoOndas.png');
+  background-image: url('@/assets/Exportação_FundoOndas.png');
   background-size: cover;
   background-position: center;
   padding: 4rem 1rem;
@@ -90,11 +90,7 @@
   color: #333; /* Cor de texto padrão para a seção */
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+/* .container é definido globalmente em src/style.css */
 
 .intro-text {
   font-size: 1.1rem;
@@ -282,9 +278,6 @@
   height: 24px; /* Tamanho menor para o ícone */
 }
 
-.flow-arrow {
-  /* Estilos movidos para o bloco unificado acima */
-}
 
 .yellow-button {
   background-color: #eee30e;
@@ -349,9 +342,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .full-width-mobile {
-     /* Classe para itens que devem ocupar toda a largura no mobile, como "Quem propõe" */
   }
   /* Ajustes específicos para o individual-flow-layout em mobile, se necessário, além do geral */
   .individual-flow-layout .flow-path {

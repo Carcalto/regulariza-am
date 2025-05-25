@@ -49,10 +49,6 @@
   margin-top: -6rem;  /* Para "subir" a seção. Ajustar este valor conforme necessário. */
 }
 
-.container.footer-content {
-  max-width: 1100px;
-  margin: 0 auto;
-}
 
 .footer-top {
   display: flex;

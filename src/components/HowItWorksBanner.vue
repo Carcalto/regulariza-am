@@ -12,7 +12,7 @@
 
 <style scoped>
 .how-it-works-banner {
-  background-image: url('../assets/Exportação_FundoAzulOndas.png'); /* Caminho relativo */
+  background-image: url('@/assets/Exportação_FundoAzulOndas.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,11 +20,7 @@
   text-align: center;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+/* .container é definido globalmente em src/style.css */
 
 .banner-text {
   font-family: 'Montserrat', sans-serif;

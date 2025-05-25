@@ -19,7 +19,7 @@
 
 <style scoped>
 .hero-section {
-  background-image: url('../assets/Exportação_Banner.png');
+  background-image: url('@/assets/Exportação_Banner.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -36,11 +36,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+/* .container é definido globalmente em src/style.css */
 
 /* Estilos do título principal e sublinhado (adaptado de ParticipationSection) */
 .section-title {
@@ -93,6 +89,8 @@
   font-weight: 700; /* Negrito */
   text-transform: uppercase;
   margin-bottom: 1rem;
+  overflow-wrap: break-word; /* Permite que palavras longas quebrem */
+  word-break: break-word; /* Fallback para alguns navegadores / maior compatibilidade */
 }
 
 .card-text {
@@ -128,6 +126,9 @@
   .section-title {
     font-size: 2rem;
   }
+  .card-title {
+    font-size: 1.3rem; /* Reduz o tamanho do título do card */
+  }
 }
 
 @media (max-width: 768px) {
@@ -144,6 +145,12 @@
   }
   .title-underline {
     width: 150px;
+  }
+  .card-title {
+    font-size: 1.2rem; /* Reduz ainda mais para telas bem pequenas */
+  }
+  .card-text {
+    font-size: 1rem; /* Ajusta o texto do card também */
   }
 }
 </style>

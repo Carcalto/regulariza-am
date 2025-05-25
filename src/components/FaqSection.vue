@@ -13,7 +13,7 @@
             <span class="faq-icon">{{ item.open ? '-' : '+' }}</span>
           </button>
           <div v-show="item.open" class="faq-answer">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>{{ item.answer }}</p>
           </div>
         </div>
       </div>
@@ -25,18 +25,18 @@
 import { ref } from 'vue';
 
 const faqItems = ref([
-  { question: 'Tenho uma empresa em recuperação judicial. Posso participar?', open: false },
-  { question: 'Se eu pagar à vista, tenho mais desconto?', open: false },
-  { question: 'Como sei se meu débitos estão dentro das regras?', open: false },
-  { question: 'Se eu parcelar, perco algum desconto?', open: false },
-  { question: 'Preciso de advogado ou contador pra participar?', open: false },
-  { question: 'Preciso oferecer algum bem de garantia?', open: false },
-  { question: 'Posso negociar tudo online ou preciso ir até a PGE ou SEFAZ?', open: false },
-  { question: 'O que acontece se eu atrasar uma parcela? Perco os benefícios?', open: false },
-  { question: 'Preciso fazer algum cadastro antes de começar?', open: false },
-  { question: 'Como são calculados os descontos de juros e multas?', open: false },
-  { question: 'Quanto preciso pagar de entrada pra fechar o acordo?', open: false },
-  { question: 'O Programa tem data para acabar? Até quando posso aderir?', open: false },
+  { question: 'Tenho uma empresa em recuperação judicial. Posso participar?', answer: 'Resposta para: Tenho uma empresa em recuperação judicial. Posso participar?', open: false },
+  { question: 'Se eu pagar à vista, tenho mais desconto?', answer: 'Resposta para: Se eu pagar à vista, tenho mais desconto?', open: false },
+  { question: 'Como sei se meu débitos estão dentro das regras?', answer: 'Resposta para: Como sei se meu débitos estão dentro das regras?', open: false },
+  { question: 'Se eu parcelar, perco algum desconto?', answer: 'Resposta para: Se eu parcelar, perco algum desconto?', open: false },
+  { question: 'Preciso de advogado ou contador pra participar?', answer: 'Resposta para: Preciso de advogado ou contador pra participar?', open: false },
+  { question: 'Preciso oferecer algum bem de garantia?', answer: 'Resposta para: Preciso oferecer algum bem de garantia?', open: false },
+  { question: 'Posso negociar tudo online ou preciso ir até a PGE ou SEFAZ?', answer: 'Resposta para: Posso negociar tudo online ou preciso ir até a PGE ou SEFAZ?', open: false },
+  { question: 'O que acontece se eu atrasar uma parcela? Perco os benefícios?', answer: 'Resposta para: O que acontece se eu atrasar uma parcela? Perco os benefícios?', open: false },
+  { question: 'Preciso fazer algum cadastro antes de começar?', answer: 'Resposta para: Preciso fazer algum cadastro antes de começar?', open: false },
+  { question: 'Como são calculados os descontos de juros e multas?', answer: 'Resposta para: Como são calculados os descontos de juros e multas?', open: false },
+  { question: 'Quanto preciso pagar de entrada pra fechar o acordo?', answer: 'Resposta para: Quanto preciso pagar de entrada pra fechar o acordo?', open: false },
+  { question: 'O Programa tem data para acabar? Até quando posso aderir?', answer: 'Resposta para: O Programa tem data para acabar? Até quando posso aderir?', open: false },
 ]);
 
 const toggleItem = (selectedIndex: number) => {
@@ -54,7 +54,7 @@ const toggleItem = (selectedIndex: number) => {
 
 <style scoped>
 .faq-section {
-  background-image: url('../assets/Exportação_FundoOndas.png');
+  background-image: url('@/assets/Exportação_FundoOndas.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -65,11 +65,10 @@ const toggleItem = (selectedIndex: number) => {
   border-top-right-radius: 20px;
 }
 
-.container {
-  max-width: 1000px; /* Aumentada a largura máxima do container */
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+/* .container é definido globalmente em src/style.css
+   A max-width global é 1200px. Se 1000px for estritamente necessário aqui,
+   considere uma classe adicional ou um wrapper interno.
+   Por ora, usaremos a global. */
 
 .section-title {
   font-family: 'Montserrat', sans-serif;

@@ -36,11 +36,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.container {
-  max-width: 1100px; /* Ajustar largura conforme necessário */
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+/* .container é definido globalmente em src/style.css */
 
 .section-title {
   font-family: 'Montserrat', sans-serif;
@@ -91,6 +87,8 @@
   font-weight: 700; /* Negrito */
   font-size: 1.7rem; /* Aumentado */
   line-height: 1;
+  overflow-wrap: break-word; /* Permite que palavras longas (como emails) quebrem */
+  word-break: break-word; /* Garante a quebra em diversos navegadores */
 }
 
 .address-text {
@@ -101,6 +99,8 @@
   font-weight: 700; /* Negrito */
   font-size: 1.7rem; /* Aumentado */
   line-height: 1;
+  overflow-wrap: break-word; /* Aplica também ao texto do endereço por segurança */
+  word-break: break-word;
 }
 
 .address-text span {

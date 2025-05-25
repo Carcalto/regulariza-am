@@ -26,11 +26,7 @@
   text-align: center;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+/* .container é definido globalmente em src/style.css */
 
 .section-title {
   font-family: 'Montserrat', sans-serif;

@@ -13,7 +13,7 @@
 
 <style scoped>
 .cta-section {
-  background-image: url('../assets/Exportação_FundoAzulOndas.png'); /* Caminho relativo */
+  background-image: url('@/assets/Exportação_FundoAzulOndas.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
