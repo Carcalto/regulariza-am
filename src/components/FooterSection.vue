@@ -5,7 +5,6 @@
         <div class="footer-logo-area">
           <img src="@/assets/Exportação_LogoPGEam.svg" alt="PGE Amazonas Logo" class="footer-logo pge-logo">
           <img src="@/assets/LogoNDTIC.png" alt="NDTIC Logo" class="footer-logo ndtic-logo">
-          <img src="@/assets/LogoGovAM.png" alt="Governo do Amazonas Logo" class="footer-logo gov-logo">
         </div>
         <div class="footer-links-area">
           <div class="links-column">
@@ -58,18 +57,31 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 0.5rem; /* Reduzido */
+  flex-wrap: wrap; /* Restaurado para permitir quebra de linha */
+  gap: 2rem; /* Restaurado gap original */
+  margin-bottom: 0.5rem; /* Reduzido - este estava ok */
+  /* padding-bottom: 10px; /* Removido */
+  /* overflow-x: auto; /* Removido */
 }
 
 .footer-logo-area {
   display: flex;
-  align-items: center; /* Alinha os logos verticalmente ao centro */
-  gap: 1.5rem; /* Espaço entre os logos */
-  margin-top: 0rem;
-  flex-wrap: wrap; /* Permite que os logos quebrem linha se não couberem */
-  justify-content: flex-start; /* Alinha os logos à esquerda por padrão */
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0rem; /* Mantido, pois os logos devem estar alinhados ao topo do footer-top */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* flex-shrink: 1; /* Removido */
+  /* min-width: 280px; /* Removido */
+}
+.footer-links-area { /* Estilo original para .footer-links-area */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0rem;
+  margin-top: 4rem; /* Restaurado o margin-top original para este bloco */
+  /* flex-shrink: 1; /* Removido */
+  /* min-width: 250px; /* Removido */
 }
 
 .footer-logo {
@@ -85,9 +97,7 @@
 .ndtic-logo {
   height: 270px; /* Aumentado para melhor visualização, igual ao gov-logo */
 }
-.gov-logo {
-  height: 90px;
-}
+/* .gov-logo { height: 90px; } */ /* Removido pois o logo foi removido */
 
 .logo-subtitle {
   font-size: 0.8rem;
@@ -164,20 +174,57 @@
 }
 
 /* Responsividade */
+
+/* Breakpoint intermediário para quando os links quebram abaixo dos logos */
+@media (max-width: 919px) { /* Ajuste este valor conforme necessário */
+  .footer-top {
+    justify-content: center; /* Centraliza os blocos quando .footer-links-area quebra */
+    gap: 1rem; /* Reduz o espaço vertical entre a linha dos logos e a linha dos links */
+  }
+  .footer-logo-area {
+    justify-content: center; /* Centraliza os logos se eles quebrarem entre si */
+  }
+  .footer-links-area {
+    align-items: center; /* Centraliza o conteúdo da área de links */
+    text-align: center; /* Centraliza os títulos e links */
+    margin-top: 2rem; /* Reduz o margin-top original para aproximar */
+  }
+  .footer-links-area .links-column,
+  .footer-links-area .social-column {
+    text-align: center; /* Garante que o conteúdo das colunas de links seja centralizado */
+  }
+  .footer-links-area .social-icons {
+    justify-content: center; /* Centraliza os ícones sociais */
+  }
+}
+
 @media (max-width: 768px) {
   .footer-top {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 1rem; /* Mantido o gap reduzido para mobile */
   }
   .footer-logo-area {
+    flex-direction: column; /* Empilha os logos verticalmente */
     align-items: center;
-    justify-content: center; /* Centraliza os logos no mobile se eles quebrarem linha */
+    justify-content: center;
+    gap: 0rem; /* Reduzido o espaço vertical entre os logos empilhados */
+    margin-top: 3.5rem; /* Adicionada/Aumentada margem superior no mobile */
   }
+  /* Reduzindo os logos proporcionalmente para mobile */
+  .pge-logo {
+    height: 50px;
+  }
+  .ndtic-logo {
+    height: 120px; /* Ainda o maior, mas significativamente reduzido */
+  }
+  /* .gov-logo { height: 55px; } */ /* Removido pois o logo foi removido */
+  
   .footer-links-area {
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 0rem;
     width: 100%;
   }
   .links-column,
