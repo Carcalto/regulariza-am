@@ -3,7 +3,9 @@
     <div class="container footer-content">
       <div class="footer-top">
         <div class="footer-logo-area">
-          <img src="@/assets/Exportação_LogoPGEam.svg" alt="PGE Amazonas Logo" class="footer-logo">
+          <img src="@/assets/Exportação_LogoPGEam.svg" alt="PGE Amazonas Logo" class="footer-logo pge-logo">
+          <img src="@/assets/LogoNDTIC.png" alt="NDTIC Logo" class="footer-logo ndtic-logo">
+          <img src="@/assets/LogoGovAM.png" alt="Governo do Amazonas Logo" class="footer-logo gov-logo">
         </div>
         <div class="footer-links-area">
           <div class="links-column">
@@ -27,7 +29,9 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="copyright-text">&copy; 2025 - Procuradoria Geral do Estado do Amazonas - SIDT/NDTIC. Todos os direitos reservados</p>
+        <p class="copyright-text">&copy; 2025 - Núcleo de Desenvolvimento de Tecnologia da Informação e Comunicação - NDTIC. 
+          <br>Superintendência de Inovação e Desenvolvimento Tecnológico - SIDT.
+          <br>Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
@@ -61,14 +65,28 @@
 
 .footer-logo-area {
   display: flex;
-  flex-direction: column;
-  margin-top: 4rem; /* Adicionado para descer o logo */
+  align-items: center; /* Alinha os logos verticalmente ao centro */
+  gap: 1.5rem; /* Espaço entre os logos */
+  margin-top: 0rem;
+  flex-wrap: wrap; /* Permite que os logos quebrem linha se não couberem */
+  justify-content: flex-start; /* Alinha os logos à esquerda por padrão */
 }
 
 .footer-logo {
-  height: 100px; /* Aumentado para destaque */
+  height: 70px; /* Altura padrão para os logos */
   width: auto;
-  margin-bottom: 2.5rem;
+  object-fit: contain; /* Garante que a proporção seja mantida */
+}
+
+/* Ajustes específicos se um logo for muito diferente em proporção */
+.pge-logo {
+  height: 80px; /* PGE pode ser um pouco maior se necessário */
+}
+.ndtic-logo {
+  height: 270px; /* Aumentado para melhor visualização, igual ao gov-logo */
+}
+.gov-logo {
+  height: 90px;
 }
 
 .logo-subtitle {
@@ -139,7 +157,7 @@
 }
 
 .copyright-text {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   color: #000000; /* Cinza para o texto de copyright */
   font-weight: 500; /* Peso regular */
   margin-bottom: 0;
@@ -154,6 +172,7 @@
   }
   .footer-logo-area {
     align-items: center;
+    justify-content: center; /* Centraliza os logos no mobile se eles quebrarem linha */
   }
   .footer-links-area {
     flex-direction: column;
