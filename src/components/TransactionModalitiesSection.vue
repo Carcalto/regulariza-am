@@ -95,12 +95,53 @@
 .intro-text {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; /* Será tratado pelos estilos do card */
   text-align: center; /* Centralizado como na imagem */
   font-weight: 700; /* Negrito */
 }
-.intro-text:last-of-type {
-  margin-bottom: 3rem;
+
+/* Estilos para o card dos textos introdutórios */
+.transaction-modalities-section .container > .intro-text {
+  background-color: #13e559; /* Fundo totalmente transparente */
+  border-color: #000000; /* Cinza escuro sutil para a borda */
+  border-style: solid;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  max-width: 680px; /* Largura do card */
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.transaction-modalities-section .container > .intro-text:first-of-type {
+  border-top-width: 1px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 1.5rem;
+  margin-bottom: 0; /* Remove margem para conectar com o próximo */
+  border-bottom-width: 0; /* Remove a borda inferior para um visual contínuo */
+}
+
+.transaction-modalities-section .container > .intro-text:first-of-type + .intro-text {
+  /* Este é o segundo parágrafo do card */
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-bottom: 1.5rem;
+  margin-top: 0; /* Remove margem superior para conectar com o anterior */
+  border-top-width: 0; /* Remove a borda superior para um visual contínuo */
+  margin-bottom: 3rem; /* Espaçamento antes das modalidades */
+}
+
+/* Remove o margin-bottom: 1rem geral do .intro-text se ele for parte do card */
+.transaction-modalities-section .container > .intro-text.intro-text {
+    margin-bottom: 0; /* Controlado pelo :first-of-type e :first-of-type + .intro-text */
+}
+/* Garante que o último parágrafo do card tenha a margem correta para as modalidades */
+.transaction-modalities-section .container > .intro-text:first-of-type + .intro-text {
+    margin-bottom: 3rem;
 }
 
 .modality {
@@ -140,19 +181,40 @@
   font-weight: 700; /* Negrito */
 }
 
-.flowchart {
+.flowchart { /* Estilo base para AMBOS os fluxogramas */
   display: flex;
-  flex-wrap: wrap; /* Permite que os itens quebrem linha */
   align-items: center;
-  justify-content: center; /* Centraliza o fluxograma se ele for menor que o container */
-  gap: 0.5rem; /* Espaço entre os itens e setas */
-  margin-bottom: 1rem; /* Espaço antes do próximo elemento */
-  position: relative; /* Para posicionamento absoluto das setas se necessário */
+  justify-content: center;
+  /* gap: 0.5rem; /* Movido para ser específico abaixo */
+  margin-bottom: 1rem;
+  position: relative;
+  /* flex-wrap: wrap; /* Removido daqui para ser específico abaixo */
 }
+
+.flowchart:not(.individual-flowchart) { /* Específico para POR ADESÃO */
+  flex-wrap: nowrap; /* Impede a quebra de linha */
+  overflow-x: auto; /* Adiciona scroll horizontal se o conteúdo não couber */
+  overflow-y: visible; /* Tenta permitir que a sombra vertical não seja cortada */
+  padding-bottom: 20px; /* Aumentado para dar mais espaço para a sombra inferior */
+  padding-left: 10px; /* Reduzido padding lateral */
+  padding-right: 10px; /* Reduzido padding lateral */
+  gap: 0.3rem; /* Reduzido o gap entre itens */
+}
+.flowchart:not(.individual-flowchart) .flow-item {
+  flex-shrink: 1; /* Permite encolher */
+  min-width: 100px; /* Reduzido o min-width para permitir mais encolhimento */
+}
+.flowchart:not(.individual-flowchart) .flow-arrow {
+  flex-shrink: 0; /* Setas não devem encolher tanto */
+  font-size: 2rem; /* Levemente menor para economizar espaço */
+}
+
 
 /* Estilos para o layout da transação individual */
 .individual-flowchart {
   justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
+  flex-wrap: wrap; /* Mantém o wrap para o layout desktop complexo do individual */
+  gap: 0.5rem; /* Gap original para este fluxograma */
 }
 
 .individual-flow-layout {
@@ -174,63 +236,54 @@
 .flow-branch {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Reduzido para aproximar os paths para o botão ACORDO */
-  flex-grow: 1; /* Para que o branch ocupe espaço e o botão acordo fique ao lado */
+  gap: 1rem; /* Espaço entre os dois paths (Estado e Contribuinte) */
+  flex-grow: 1;
 }
 
 .flow-path {
   display: flex;
-  align-items: center;
+  align-items: center; /* Alinha itens e seta horizontalmente por padrão */
   gap: 0.5rem;
 }
 
-/* Estilos unificados para todas as setas */
+/* Estilos unificados para todas as setas (Base) */
 .flow-arrow,
 .diagonal-arrow-up,
 .diagonal-arrow-down,
 .diagonal-arrow-up-to-acordo,
 .diagonal-arrow-down-to-acordo {
-  font-size: 2.2rem; /* Tamanho padronizado */
+  font-size: 2.2rem; /* Default/Desktop size */
   color: black;
   font-weight: bold;
-  line-height: 1; /* Para melhor alinhamento vertical */
+  line-height: 1;
+  text-align: center;
+  position: relative; /* Para pseudo-elementos se necessário */
 }
 
-/* Ajustes específicos para setas diagonais */
-.diagonal-arrow-up,
-.diagonal-arrow-down {
-  padding: 0 0.5rem; /* Ajustado */
+/* Estilos específicos para setas diagonais no desktop */
+.diagonal-arrow-up, /* &#8599; ↙ */
+.diagonal-arrow-down { /* &#8600; ↘ */
+  padding: 0 0.5rem; /* Desktop */
 }
-
-.diagonal-arrow-up-to-acordo,
-.diagonal-arrow-down-to-acordo {
-  /* Estilos para as setas que convergem para o ACORDO */
-  /* Posicionamento absoluto pode ser necessário aqui para um bom alinhamento */
-  /* Exemplo simples por enquanto: */
-  margin-left: 0.5rem;
+.diagonal-arrow-up-to-acordo, /* &#8599; ↙ */
+.diagonal-arrow-down-to-acordo { /* &#8600; ↘ */
+  margin-left: 0.5rem; /* Desktop */
 }
 
 .acordo-button {
-  /* Estilos para o botão ACORDO */
-  /* Já usa .flow-item e .yellow-button */
-  align-self: center; /* Tenta centralizar verticalmente com o .flow-branch */
-  margin-left: 1rem; /* Aumentado para afastar mais para a direita */
-  /* padding, font-size, gap agora são definidos em .yellow-button para consistência */
-  /* Mantém apenas estilos de layout específicos para .acordo-button */
+  align-self: center; /* Desktop */
+  margin-left: 1rem; /* Desktop: para layout horizontal */
+  position: relative; /* Para pseudo-elementos das setas de convergência no mobile */
 }
 
-
-/* Remover .flow-row pois a estrutura mudou */
-/* .flow-row { ... } */
-
-
 .flow-item {
-  padding: 0.8rem 1.5rem;
-  font-weight: 700; /* Negrito */
+  padding: 0.8rem 1.5rem; /* Desktop padding */
+  font-weight: 700;
   text-align: center;
-  box-shadow: -10px 10px 0px #000000; /* Sombra sólida destacada e engrossada */
-  font-size: 0.9rem;
+  box-shadow: -10px 10px 0px #000000; /* Desktop shadow */
+  font-size: 0.9rem; /* Desktop font size */
   line-height: 1.2;
+  position: relative; /* Para pseudo-elementos de setas se necessário */
 }
 
 .green-box {
@@ -300,57 +353,220 @@
 }
 
 
-@media (max-width: 992px) { /* Ajustar breakpoint se necessário */
-  .individual-flow-layout {
+@media (max-width: 915px) {
+  /* --- Ajustes Gerais para este Breakpoint --- */
+  .modality-title {
+    font-size: 1.4rem; /* Um pouco menor */
+    text-align: center;
+    justify-content: center !important; /* Força centralização */
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
+  .modality-align-right .modality-title {
+    justify-content: center !important;
+  }
+  .modality-description {
+    font-size: 0.85rem; /* Um pouco menor */
+    text-align: center !important; /* Força centralização */
+    margin-bottom: 1.5rem;
+    max-width: 90%; /* Limita largura da descrição */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .flow-item { /* Estilo base para todos os itens de fluxo neste breakpoint */
+    font-size: 0.8rem;
+    padding: 0.5rem 0.9rem;
+    box-shadow: -4px 4px 0px #000000;
+    max-width: 280px; /* Limite para não esticar demais */
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* --- Fluxograma POR ADESÃO (Vertical Simples) --- */
+  .flowchart:not(.individual-flowchart) {
     flex-direction: column;
-    align-items: center; /* Centralizar tudo quando empilhado */
+    align-items: center;
+    gap: 0.1rem; /* Espaço mínimo entre item e seta */
+  }
+  .flowchart:not(.individual-flowchart) .flow-item {
+     margin-bottom: 0.1rem;
+  }
+  .flowchart:not(.individual-flowchart) .flow-arrow {
+    font-size: 0; /* Esconde o caractere original &rarr; */
+    height: 22px; width: 22px;
+    margin: 0.2rem 0; /* Margem vertical pequena */
+  }
+  .flowchart:not(.individual-flowchart) .flow-arrow::before {
+    content: "↓"; font-size: 1.8rem; color: black; font-weight: bold; line-height: 1;
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  }
+  .flowchart:not(.individual-flowchart) .yellow-button {
+    min-width: 180px; padding: 0.7rem 1rem; margin-top: 0.2rem;
+  }
+
+  /* --- Fluxograma POR TRANSAÇÃO INDIVIDUAL (Layout da Imagem) --- */
+  .individual-flowchart {
+     padding: 0 5px; /* Evita que cole nas bordas */
+  }
+  .individual-flow-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza .quem-propoe, .flow-branch, .acordo-button */
+    width: 100%;
+    gap: 0px; /* Sem gap extra entre os blocos principais, o espaçamento virá das setas */
   }
   .quem-propoe {
-    margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 35px; /* Aumentado para mais espaço para as setas de bifurcação abaixo */
+    /* max-width: 200px; /* Já coberto pelo .flow-item geral */
   }
+  .quem-propoe::before, .quem-propoe::after { /* Setas de Bifurcação */
+    position: absolute;
+    bottom: -33px; /* Ajustado para descer mais as setas */
+    font-size: 1.8rem; font-weight: bold; color: black;
+  }
+  .quem-propoe::before { /* Seta para Contribuinte (esquerda) ↙ */
+    content: "↙"; left: 25%; /* Ajustado para colunas mais próximas */ transform: translateX(-50%);
+  }
+  .quem-propoe::after { /* Seta para Estado (direita) ↘ */
+    content: "↘"; right: 25%; /* Ajustado para colunas mais próximas */ transform: translateX(50%);
+  }
+
   .flow-branch {
-    align-items: center; /* Centralizar os paths quando o branch está em coluna */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Afasta as colunas Contribuinte e Estado */
+    align-items: flex-start; /* Alinha o topo das colunas */
+    width: 100%;
+    max-width: 490px; /* Para simular visualização de ~510px */
+    margin-left: auto; /* Centraliza o .flow-branch */
+    margin-right: auto; /* Centraliza o .flow-branch */
+    padding: 0 1%; /* Padding menor pois o container é mais estreito */
+    box-sizing: border-box;
+    margin-bottom: 25px; /* Espaço para as setas de convergência abaixo */
   }
-  .flow-path {
-     flex-wrap: wrap; /* Permitir que os itens do path quebrem linha */
-     justify-content: center;
+  .individual-flow-layout .flow-path { /* Coluna Contribuinte ou Estado */
+    flex-direction: column;
+    align-items: center; /* Centraliza itens na coluna */
+    flex-basis: 48%; /* Cada coluna ocupa quase metade */
+    gap: 0.1rem; /* Espaço entre item e seta na coluna */
   }
-  .diagonal-arrow-up,
-  .diagonal-arrow-down {
-    /* Esconder ou ajustar setas diagonais em telas menores */
-    display: none; /* Simplesmente esconder por enquanto */
+  .individual-flow-layout .flow-path .flow-item {
+    /* width: 100%; */ /* Removido para usar o max-width do .flow-item geral */
+    width: auto; /* Para que o max-width funcione corretamente com padding */
+    /* max-width é herdado de .flow-item (280px neste breakpoint) */
+    margin-left: auto; /* Centraliza se for menor que a coluna do path */
+    margin-right: auto; /* Centraliza se for menor que a coluna do path */
+    margin-bottom: 0.1rem;
+  }
+  .individual-flow-layout .custom-blue-box {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.75rem;
+    /* clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); */ /* Removido para manter formato original */
+    min-height: 40px; /* Para dar alguma altura */
+    display: flex; align-items: center; justify-content: center; /* Centralizar texto */
+    border-radius: 8px; /* Garantir o border-radius padrão dos flow-items */
+  }
+  .individual-flow-layout .flow-path > .flow-arrow { /* Setas verticais DENTRO das colunas */
+    font-size: 0; /* Esconde o caractere original */
+    height: 22px; width: 22px; margin: 0.2rem auto;
+  }
+  .individual-flow-layout .flow-path > .flow-arrow::before {
+    content: "↓"; font-size: 1.8rem; color: black; font-weight: bold; line-height: 1;
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  }
+  /* Ocultar a última seta .flow-arrow dentro de cada .flow-path da transação individual,
+     pois a convergência é feita pelas setas do .acordo-button */
+  .individual-flow-layout .flow-path > .flow-item + .flow-arrow:last-of-type {
+    display: none !important;
+  }
+  /* Se a estrutura for item -> seta -> item -> seta (e a última seta é a que queremos remover): */
+  .individual-flow-layout .flow-path > .flow-item:nth-last-child(2) + .flow-arrow {
+     /* Este seletor pode ser mais específico se a última seta for sempre depois do penúltimo item.
+        No entanto, a estrutura do HTML é [item, seta, item, seta, item, seta-diagonal].
+        A seta a ser removida é a última .flow-arrow que NÃO é diagonal.
+        O HTML do path do contribuinte é:
+        <div class="flow-arrow diagonal-arrow-down">&#8600;</div>
+        <div class="flow-item custom-blue-box">Contribuinte</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-item green-box">Acesse o protocolo virtual da PGE</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-item green-box">Propõe Negociação</div>
+        <div class="flow-arrow">&rarr;</div> <--- ESTA É A SETA A SER REMOVIDA NO MOBILE
+        A última seta diagonal já está oculta por '.diagonal-arrow-down { display: none !important; }'
+     */
+  }
+   .individual-flow-layout .flow-path:nth-child(2) > .flow-item.green-box:last-of-type + .flow-arrow {
+    /* Específico para o path do Contribuinte (segundo .flow-path)
+       Oculta a seta que vem DEPOIS do último .flow-item.green-box */
+    display: none !important;
+  }
+   /* Para o path do Estado, a última seta é uma diagonal, já oculta.
+      Se houver uma .flow-arrow normal antes dela, e depois do último green-box,
+      o seletor acima pode precisar de ajuste ou um similar para o primeiro .flow-path.
+      No HTML do Estado: ... Sugere Proposta ... <div class="flow-arrow diagonal-arrow-down-to-acordo">
+      Não há uma .flow-arrow normal no final do path do Estado.
+   */
+
+
+  /* Esconder TODAS as setas diagonais originais do HTML no mobile */
+  .diagonal-arrow-up, .diagonal-arrow-down,
+  .diagonal-arrow-up-to-acordo, .diagonal-arrow-down-to-acordo {
+    display: none !important;
+  }
+
+  .acordo-button {
+    margin-top: 10px; /* Ajustado pelo margin-bottom do flow-branch */
+    min-width: 160px; padding: 0.7rem 1rem;
+  }
+  .acordo-button::before, .acordo-button::after { /* Setas de Convergência */
+    position: absolute;
+    top: -35px; /* Posiciona acima do "Acordo" */
+    font-size: 1.8rem; font-weight: bold; color: black;
+  }
+  .acordo-button::before { /* Seta do Contribuinte (esquerda) para Acordo ↘ */
+    content: "↘"; left: 25%; /* Ajustado para colunas mais próximas */ transform: translateX(-50%);
+  }
+  .acordo-button::after { /* Seta do Estado (direita) para Acordo ↙ */
+    content: "↙"; right: 25%; /* Ajustado para colunas mais próximas */ transform: translateX(50%);
   }
 }
 
-@media (max-width: 768px) {
-  .flowchart { /* Estilo geral para todos os flowcharts em mobile */
-    flex-direction: column;
-    align-items: stretch;
+/* Ajustes para telas ainda menores, herdando o layout de 915px */
+@media (max-width: 500px) { /* Ajustando breakpoint para quando o flow-branch deve expandir */
+  .individual-flow-layout .flow-branch {
+    max-width: 100%; /* Permite que o flow-branch use mais largura */
+    padding: 0 2%; /* Pode voltar ao padding original se necessário */
   }
-  .flow-item { /* Estilo geral para todos os flow-items em mobile */
-    width: 100%;
-    margin-bottom: 0.5rem;
+   /* Reajustar posições das setas se o .flow-branch expandir */
+  .quem-propoe::before { left: 30%;}
+  .quem-propoe::after { right: 30%;}
+  .acordo-button::before { left: 30%;}
+  .acordo-button::after { right: 30%;}
+
+  /* Os demais estilos de 480px podem ser movidos para cá ou mantidos separados */
+}
+
+@media (max-width: 480px) {
+  .flow-item { /* Aplica-se a todos os flow-items */
+    max-width: 90%;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.7rem;
+    box-shadow: -3px 3px 0px #000000;
   }
-  .flow-arrow { /* Estilo geral para todas as flow-arrows em mobile */
-    transform: rotate(90deg);
-    margin: 0.5rem 0;
-  }
-  /* .blue-hexagon foi substituído por .custom-blue-box, que herda de .flow-item */
-  .custom-blue-box {
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  /* Ajustes específicos para o individual-flow-layout em mobile, se necessário, além do geral */
-  .individual-flow-layout .flow-path {
-     flex-direction: column; /* Empilhar itens dentro de cada path também */
-     align-items: stretch;
-  }
-  .individual-flow-layout .flow-arrow { /* Setas horizontais dentro dos paths */
-    transform: rotate(90deg);
-    margin: 0.5rem auto; /* Centralizar a seta */
-  }
+  .modality-title { font-size: 1.2rem; }
+  .modality-description { font-size: 0.78rem; }
+  
+  .quem-propoe::before, .quem-propoe::after,
+  .acordo-button::before, .acordo-button::after { font-size: 1.6rem; } /* Setas diagonais menores */
+  
+  .flowchart:not(.individual-flowchart) .flow-arrow::before,
+  .individual-flow-layout .flow-path > .flow-arrow::before { font-size: 1.6rem; } /* Setas '↓' menores */
+
+  .individual-flow-layout .custom-blue-box { font-size: 0.7rem; min-height: 35px; border-radius: 8px; } /* Garantir border-radius também aqui */
+  
+  .flowchart:not(.individual-flowchart) .yellow-button,
+  .acordo-button { min-width: 140px; padding: 0.6rem 0.8rem; }
 }
 </style>
