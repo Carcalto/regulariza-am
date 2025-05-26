@@ -482,21 +482,22 @@
     display: none !important;
   }
   /* Se a estrutura for item -> seta -> item -> seta (e a última seta é a que queremos remover): */
-  .individual-flow-layout .flow-path > .flow-item:nth-last-child(2) + .flow-arrow {
-     /* Este seletor pode ser mais específico se a última seta for sempre depois do penúltimo item.
-        No entanto, a estrutura do HTML é [item, seta, item, seta, item, seta-diagonal].
-        A seta a ser removida é a última .flow-arrow que NÃO é diagonal.
-        O HTML do path do contribuinte é:
-        <div class="flow-arrow diagonal-arrow-down">&#8600;</div>
-        <div class="flow-item custom-blue-box">Contribuinte</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-item green-box">Acesse o protocolo virtual da PGE</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-item green-box">Propõe Negociação</div>
-        <div class="flow-arrow">&rarr;</div> <--- ESTA É A SETA A SER REMOVIDA NO MOBILE
-        A última seta diagonal já está oculta por '.diagonal-arrow-down { display: none !important; }'
-     */
-  }
+  /* 
+    .individual-flow-layout .flow-path > .flow-item:nth-last-child(2) + .flow-arrow {
+       Este seletor pode ser mais específico se a última seta for sempre depois do penúltimo item.
+       No entanto, a estrutura do HTML é [item, seta, item, seta, item, seta-diagonal].
+       A seta a ser removida é a última .flow-arrow que NÃO é diagonal.
+       O HTML do path do contribuinte é:
+       <div class="flow-arrow diagonal-arrow-down">&#8600;</div>
+       <div class="flow-item custom-blue-box">Contribuinte</div>
+       <div class="flow-arrow">&rarr;</div>
+       <div class="flow-item green-box">Acesse o protocolo virtual da PGE</div>
+       <div class="flow-arrow">&rarr;</div>
+       <div class="flow-item green-box">Propõe Negociação</div>
+       <div class="flow-arrow">&rarr;</div> <--- ESTA É A SETA A SER REMOVIDA NO MOBILE
+       A última seta diagonal já está oculta por '.diagonal-arrow-down { display: none !important; }'
+    }
+  */
    .individual-flow-layout .flow-path:nth-child(2) > .flow-item.green-box:last-of-type + .flow-arrow {
     /* Específico para o path do Contribuinte (segundo .flow-path)
        Oculta a seta que vem DEPOIS do último .flow-item.green-box */
